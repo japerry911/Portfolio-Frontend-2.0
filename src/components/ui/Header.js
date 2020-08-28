@@ -29,7 +29,93 @@ const ElevationScroll = (props) => {
   });
 };
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  toolbarMargin: {
+    ...theme.mixins.toolbar,
+    marginBottom: "3em",
+    [theme.breakpoints.down("md")]: {
+      marginBottom: "2em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "1.25em",
+    },
+  },
+  logo: {
+    height: "8em",
+    [theme.breakpoints.down("md")]: {
+      height: "7em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      height: "5.5em",
+    },
+  },
+  logoContainer: {
+    padding: 0,
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  },
+  tabContainer: {
+    marginLeft: "auto",
+  },
+  tab: {
+    ...theme.typography.tab,
+    minWidth: 10,
+    marginLeft: "25px",
+  },
+  button: {
+    ...theme.typography.estimate,
+    borderRadius: "50px",
+    marginLeft: "50px",
+    marginRight: "25px",
+    height: "45px",
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.light,
+    },
+  },
+  menu: {
+    backgroundColor: theme.palette.common.green,
+    color: "#fff",
+    borderRadius: 0,
+  },
+  menuItem: {
+    ...theme.typography.tab,
+    opacity: 0.7,
+    "&:hover": {
+      opacity: 1,
+    },
+  },
+  drawerIconContainer: {
+    marginLeft: "auto",
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
+  },
+  drawerIcon: {
+    height: "50px",
+    width: "50px",
+  },
+  drawer: {
+    backgroundColor: theme.palette.common.green,
+    width: "12rem",
+  },
+  drawerItemText: {
+    ...theme.typography.tab,
+    color: "#fff",
+    opacity: 0.7,
+  },
+  drawerItemSelected: {
+    "& .MuiListItemText-root": {
+      opacity: 1,
+    },
+  },
+  drawerItemEstimateText: {
+    backgroundColor: theme.palette.common.black,
+  },
+  appBar: {
+    zIndex: theme.zIndex.modal + 1,
+  },
+}));
 
 const Header = ({ value, setValue }) => {
   const classes = useStyles();
@@ -64,13 +150,18 @@ const Header = ({ value, setValue }) => {
 
   const tabs = (
     <Fragment>
-      <Tabs value={value} onChange={handleTabChange}>
+      <Tabs
+        value={value}
+        onChange={handleTabChange}
+        className={classes.tabContainer}
+      >
         {routes.map((routeObject) => (
           <Tab
             key={`${routeObject}-${routeObject.activeIndex}`}
             component={Link}
             to={routeObject.link}
             label={routeObject.name}
+            className={classes.tab}
           />
         ))}
       </Tabs>
@@ -85,6 +176,7 @@ const Header = ({ value, setValue }) => {
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
         onOpen={() => setOpenDrawer(true)}
+        classes={{ paper: classes.drawer }}
       >
         <div className={classes.toolbarMargin} />
         <List disablePadding>
@@ -100,13 +192,23 @@ const Header = ({ value, setValue }) => {
               component={Link}
               to={routeObject.link}
               selected={value === routeObject.activeIndex}
+              classes={{ selected: classes.drawerItemSelected }}
             >
-              <ListItemText disableTypography>{routeObject.name}</ListItemText>
+              <ListItemText
+                disableTypography
+                className={classes.drawerItemText}
+              >
+                {routeObject.name}
+              </ListItemText>
             </ListItem>
           ))}
         </List>
       </SwipeableDrawer>
-      <IconButton onClick={() => setOpenDrawer(!openDrawer)} disableripple>
+      <IconButton
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableripple
+        className={classes.drawerIconContainer}
+      >
         <MenuIcon />
       </IconButton>
     </Fragment>
@@ -115,9 +217,14 @@ const Header = ({ value, setValue }) => {
   return (
     <Fragment>
       <ElevationScroll>
-        <AppBar position="fixed">
+        <AppBar position="fixed" className={classes.appBar}>
           <Toolbar disableGutters>
-            <Button component={Link} to="/" disableRipple>
+            <Button
+              component={Link}
+              to="/"
+              disableRipple
+              className={classes.logoContainer}
+            >
               insert image here
             </Button>
             {matchesMD ? drawer : tabs}
