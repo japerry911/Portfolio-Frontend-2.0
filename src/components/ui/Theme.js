@@ -23,7 +23,14 @@ const theme = responsiveFontSizes(
         blue: jackBlue,
       },
     },
-    typography: {},
+    typography: {
+      h3: {
+        color: jackGreen,
+      },
+      h4: {
+        color: jackGreen,
+      },
+    },
   })
 );
 
