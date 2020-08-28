@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logoContainer: {
+    marginLeft: "2.5rem",
     padding: 0,
     "&:hover": {
       backgroundColor: "transparent",
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tabContainer: {
     marginLeft: "auto",
+    marginRight: "2.5rem",
   },
   tab: {
     ...theme.typography.tab,
@@ -90,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "transparent",
     },
+    color: theme.palette.common.white,
   },
   drawerIcon: {
     height: "50px",
@@ -206,7 +209,7 @@ const Header = ({ value, setValue }) => {
       </SwipeableDrawer>
       <IconButton
         onClick={() => setOpenDrawer(!openDrawer)}
-        disableripple
+        disableRipple
         className={classes.drawerIconContainer}
       >
         <MenuIcon />
@@ -225,7 +228,11 @@ const Header = ({ value, setValue }) => {
               disableRipple
               className={classes.logoContainer}
             >
-              insert image here
+              <img
+                alt="Jack Logo"
+                className={classes.logo}
+                src="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/Logos/white_logo_transparent_background.png"
+              />
             </Button>
             {matchesMD ? drawer : tabs}
           </Toolbar>
