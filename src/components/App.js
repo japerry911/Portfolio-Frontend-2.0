@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./ui/Theme";
+import Header from "./ui/Header";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-function App() {
+const App = () => {
+  const [value, setValue] = useState(0);
+
   return (
     <ThemeProvider theme={theme}>
-      <h1>hello</h1>
+      <BrowserRouter>
+        <Header value={value} setValue={setValue} />
+        <Switch></Switch>
+      </BrowserRouter>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
