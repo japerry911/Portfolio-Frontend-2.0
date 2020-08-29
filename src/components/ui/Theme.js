@@ -3,7 +3,7 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 const jackGreen = "#549065";
 const jackBlack = "#000b11";
 const jackPurple = "#950067";
-const jackGray = "#544b3a";
+const jackGray = "#c2b8a4";
 const jackBlue = "#90a1d5";
 
 const theme = responsiveFontSizes(
