@@ -62,11 +62,12 @@ const useStyles = makeStyles((theme) => ({
   },
   textarea: {
     margin: "1.15rem 0",
-    width: "39.8rem",
+    width: "39.5rem",
     backgroundColor: theme.palette.secondary.dark,
     borderColor: theme.palette.common.blue,
     borderRadius: "4px",
     color: theme.palette.common.green,
+    fontFamily: "Roboto",
     "&:hover": {
       borderColor: theme.palette.common.green,
     },
@@ -96,7 +97,14 @@ const Contact = () => {
   const classes = useStyles();
   const theme = useTheme();
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <Grid
@@ -124,59 +132,76 @@ const Contact = () => {
         alignItems="center"
       >
         <Paper className={classes.bodyPaper}>
-          <Grid item>
-            <TextField
-              className={classes.textField}
-              color="primary"
-              variant="outlined"
-              label="Name"
-              required
-            />
-          </Grid>
-          <Grid item className={classes.gridItem}>
-            <TextField
-              className={classes.textField}
-              color="primary"
-              variant="outlined"
-              label="Email"
-              required
-            />
-          </Grid>
-          <Grid item className={classes.gridItem}>
-            <TextField
-              className={classes.textField}
-              color="primary"
-              variant="outlined"
-              label="Subject"
-              required
-            />
-          </Grid>
-          <Grid item style={{ marginTop: "1rem" }}>
-            <FormControl className={classes.formControlStyle}>
-              <InputLabel
-                shrink={message !== ""}
-                style={{
-                  position: "absolute",
-                  color: theme.palette.common.green,
-                }}
-              >
-                &nbsp;&nbsp;Message*
-              </InputLabel>
-              <TextareaAutosize
-                className={classes.textarea}
+          <form
+            onSubmit={onSubmit}
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Grid item>
+              <TextField
+                className={classes.textField}
                 color="primary"
                 variant="outlined"
-                label="Message"
-                rowsMin={10}
-                rowsMax={10}
-                value={message}
-                onChange={(newMessage) => setMessage(newMessage.target.value)}
+                label="Name"
+                value={name}
+                onChange={(newName) => setName(newName.target.value)}
+                required
               />
-            </FormControl>
-          </Grid>
-          <Grid item>
-            <Button className={classes.button}>Send Message</Button>
-          </Grid>
+            </Grid>
+            <Grid item className={classes.gridItem}>
+              <TextField
+                className={classes.textField}
+                color="primary"
+                variant="outlined"
+                label="Email"
+                value={email}
+                onChange={(newEmail) => setEmail(newEmail.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item className={classes.gridItem}>
+              <TextField
+                className={classes.textField}
+                color="primary"
+                variant="outlined"
+                label="Subject"
+                value={subject}
+                onChange={(newSubject) => setSubject(newSubject.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item style={{ marginTop: "1rem" }}>
+              <FormControl className={classes.formControlStyle}>
+                <InputLabel
+                  shrink={message !== ""}
+                  style={{
+                    position: "absolute",
+                    color: theme.palette.common.green,
+                  }}
+                >
+                  &nbsp;&nbsp;Message*
+                </InputLabel>
+                <TextareaAutosize
+                  className={classes.textarea}
+                  color="primary"
+                  variant="outlined"
+                  label="Message"
+                  rowsMin={10}
+                  rowsMax={10}
+                  value={message}
+                  onChange={(newMessage) => setMessage(newMessage.target.value)}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item>
+              <Button className={classes.button}>Send Message</Button>
+            </Grid>
+          </form>
         </Paper>
       </Grid>
     </Grid>
