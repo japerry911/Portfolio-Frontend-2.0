@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "1rem",
     backgroundColor: "transparent",
     marginTop: "2rem",
+    transition: "background-color 500ms ease-in",
     "&:hover": {
       backgroundColor: theme.palette.common.green,
       color: theme.palette.common.black,
