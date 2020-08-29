@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
+import Button from "@material-ui/core/Button";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textarea: {
     margin: "1.15rem 0",
-    width: "40rem",
+    width: "39.8rem",
     backgroundColor: theme.palette.secondary.dark,
     borderColor: theme.palette.common.blue,
     borderRadius: "4px",
@@ -73,6 +74,20 @@ const useStyles = makeStyles((theme) => ({
       borderColor: theme.palette.common.green,
       borderWidth: "2px",
       outline: "none",
+    },
+  },
+  button: {
+    width: "20rem",
+    color: theme.palette.common.green,
+    border: `3pt solid ${theme.palette.common.blue}`,
+    borderRadius: 50,
+    padding: "1rem",
+    backgroundColor: "transparent",
+    marginTop: "2rem",
+    transition: "background-color 500ms ease-in",
+    "&:hover": {
+      backgroundColor: theme.palette.common.green,
+      color: theme.palette.common.black,
     },
   },
 }));
@@ -136,7 +151,7 @@ const Contact = () => {
               required
             />
           </Grid>
-          <Grid item className={classes.gridItem}>
+          <Grid item style={{ marginTop: "1rem" }}>
             <FormControl className={classes.formControlStyle}>
               <InputLabel
                 shrink={message !== ""}
@@ -158,6 +173,9 @@ const Contact = () => {
                 onChange={(newMessage) => setMessage(newMessage.target.value)}
               />
             </FormControl>
+          </Grid>
+          <Grid item>
+            <Button className={classes.button}>Send Message</Button>
           </Grid>
         </Paper>
       </Grid>
