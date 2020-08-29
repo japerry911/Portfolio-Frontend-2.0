@@ -147,6 +147,9 @@ const Header = ({ value, setValue }) => {
           if (value !== routeObject.activeIndex) {
             setValue(routeObject.activeIndex);
           }
+          break;
+        default:
+          break;
       }
     });
   }, [value, setValue, routes]);
