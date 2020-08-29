@@ -16,7 +16,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
         </Switch>
-        <Footer />
+        <Footer setValue={setValue} />
       </BrowserRouter>
     </ThemeProvider>
   );
