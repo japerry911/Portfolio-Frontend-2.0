@@ -6,6 +6,7 @@ import TabPanel from "../ui/TabPanel";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import ExperienceCard from "../ui/ExperienceCard";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,6 +34,16 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.h3,
     fontWeight: "bold",
   },
+  bodyText: {
+    color: theme.palette.common.white,
+  },
+  gridCardItem: {
+    width: "20rem",
+    height: "20rem",
+  },
+  experienceContainer: {
+    marginTop: "3rem",
+  },
 }));
 
 const About = () => {
@@ -49,7 +60,7 @@ const About = () => {
     <Grid container direction="column" className={classes.mainContainer}>
       <Grid item style={{ marginTop: "3rem" }}>
         <Typography variant="h3" align="center" className={classes.headerText}>
-          ABOUT <span style={{ color: theme.palette.common.blue }}>JACK</span>
+          ABOUT JACK
         </Typography>
       </Grid>
       <Grid
@@ -165,9 +176,178 @@ const About = () => {
           EXPERIENCE
         </Typography>
       </Grid>
-      <Grid item container direction="column">
-        <Grid item container direction="row">
-          <Grid item></Grid>
+      <Grid item container direction="column" style={{ margin: "3rem 0" }}>
+        <Grid item container direction="row" justify="space-evenly">
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="JavaScript Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/logo-javascript-png-transparent-logo-javascriptpng-images-pluspng-javascript-png-587_330.png"
+              title="JavaScript"
+              maxWidth="17rem"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="React JS Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/800px-React-icon.svg.png"
+              title="React JS"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="React Native JS Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/ReactNative%402x.webp"
+              title="React Native JS"
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          direction="row"
+          justify="space-evenly"
+          className={classes.experienceContainer}
+        >
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Vue JS Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/Vue-logo-1.png"
+              title="Vue JS"
+              maxWidth="10rem"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="GoLang Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/Go-Logo_Blue+(1).png"
+              title="GoLang"
+              maxWidth="10rem"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Ruby on Rails Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/Ruby_On_Rails_Logo.svg.png"
+              title="Ruby on Rails"
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          direction="row"
+          justify="space-evenly"
+          className={classes.experienceContainer}
+        >
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="SASS Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/1024px-Sass_Logo_Color.svg.png"
+              title="SASS"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Google Material-UI Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/logo.png"
+              title="Google Material-UI"
+              maxWidth="10rem"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="PostgreSQL Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/PostgreSQL-Logo.wine.png"
+              title="PostgreSQL"
+              maxWidth="19rem"
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          direction="row"
+          justify="space-evenly"
+          className={classes.experienceContainer}
+        >
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="C++ Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/c-logo+(1).png"
+              title="C++"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Python Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/unnamed.png"
+              title="Python"
+              maxWidth="10rem"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Haskell Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/tuFExZl.png"
+              title="Haskell"
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          direction="row"
+          justify="space-evenly"
+          className={classes.experienceContainer}
+        >
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Elixir Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/pluginIcon+(1).png"
+              title="Elixir"
+              maxWidth="10rem"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Phoenix Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/QLkrP5nrS6jIL99GMbV3+(1).png"
+              title="Phoenix Framework"
+              maxWidth="10rem"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Google Apps Scripts Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/logo-apps-script.png"
+              title="Google Apps Scripts"
+              maxWidth="10rem"
+            />
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          direction="row"
+          justify="space-evenly"
+          className={classes.experienceContainer}
+        >
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Google Cloud Platform Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/icon_cloud_192pt_clr.png"
+              title="Google Cloud Platform"
+              maxWidth="10rem"
+            />
+          </Grid>
+          <Grid item className={classes.gridCardItem}>
+            <ExperienceCard
+              alt="Heroku Logo"
+              imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/873120.png"
+              title="Heroku"
+              maxWidth="10rem"
+            />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

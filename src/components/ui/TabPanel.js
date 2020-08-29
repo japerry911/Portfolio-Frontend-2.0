@@ -1,6 +1,4 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -13,7 +11,7 @@ const TabPanel = (props) => {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Typography>{children}</Typography>}
+      {value === index && children}
     </div>
   );
 };
