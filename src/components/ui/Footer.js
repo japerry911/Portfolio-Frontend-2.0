@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     color: "#fff",
-    fontFamily: "Sans Sa",
     fontSize: "0.75rem",
     fontWeight: "bold",
     textDecoration: "none",
@@ -59,7 +58,13 @@ const Footer = ({ setValue }) => {
         ))}
         <Grid item>
           <Grid container justify="space-between">
-            <Grid item>
+            <Grid
+              item
+              component={"a"}
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/jack-e-perry/"
+            >
               <img
                 alt="LinkedIn Logo"
                 src={linkedin}
@@ -73,6 +78,10 @@ const Footer = ({ setValue }) => {
                 display: "flex",
                 alignItems: "flex-end",
               }}
+              component={"a"}
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://medium.com/@jackperry_57377"
             >
               <img
                 alt="Medium Logo"
@@ -83,7 +92,13 @@ const Footer = ({ setValue }) => {
                 }}
               />
             </Grid>
-            <Grid item>
+            <Grid
+              item
+              component={"a"}
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/japerry911"
+            >
               <img alt="GitHub Logo" src={github} className={classes.icon} />
             </Grid>
           </Grid>
