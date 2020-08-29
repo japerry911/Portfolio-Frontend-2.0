@@ -7,6 +7,7 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
+import axios from "axios";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -104,6 +105,28 @@ const Contact = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+
+    const data = {
+      name,
+      email,
+      subject,
+      message,
+      date: new Date(),
+    };
+
+    axios
+      .post("http://localhost:4000/contact-send-email", { email_options: data })
+      .then(
+        () => {
+          setName("");
+          setEmail("");
+          setSubject("");
+          setMessage("");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   return (
@@ -199,7 +222,9 @@ const Contact = () => {
               </FormControl>
             </Grid>
             <Grid item>
-              <Button className={classes.button}>Send Message</Button>
+              <Button className={classes.button} type="submit">
+                Send Message
+              </Button>
             </Grid>
           </form>
         </Paper>
