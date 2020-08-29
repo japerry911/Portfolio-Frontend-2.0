@@ -34,6 +34,7 @@ const App = () => {
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/icon_cloud_192pt_clr.png",
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/873120.png",
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/Home/caspar-camille-rubin-fPkvU7RDmCo-unsplash.jpg",
+      "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/Contact/luca-bravo-XJXWbfSo2f0-unsplash.jpg",
     ];
 
     cacheImages(imgs);
