@@ -10,7 +10,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    height: "100vh",
+    minHeight: "100vh",
     backgroundColor: theme.palette.common.black,
   },
   jackImage: {
@@ -158,6 +158,16 @@ const About = () => {
             src="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/jack_perry_2+(1).png"
             className={classes.jackImage}
           />
+        </Grid>
+      </Grid>
+      <Grid item style={{ marginTop: "5rem" }}>
+        <Typography align="center" variant="h4" className={classes.headerText}>
+          EXPERIENCE
+        </Typography>
+      </Grid>
+      <Grid item container direction="column">
+        <Grid item container direction="row">
+          <Grid item></Grid>
         </Grid>
       </Grid>
     </Grid>
