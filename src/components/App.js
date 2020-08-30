@@ -67,7 +67,7 @@ const App = () => {
           <Header value={value} setValue={setValue} />
           <ScrollToTop />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" render={() => <Home setValue={setValue} />} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/blogposts" component={Blogposts} />

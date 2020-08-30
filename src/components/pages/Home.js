@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Home = () => {
+const Home = ({ setValue }) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -72,6 +72,7 @@ const Home = () => {
                 className={classes.button}
                 component={Link}
                 to="/projects"
+                onClick={() => setValue(2)}
               >
                 <span style={{ marginRight: 5 }}>View My Projects</span>
                 <ButtonArrow
