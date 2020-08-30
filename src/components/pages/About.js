@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 12,
     [theme.breakpoints.down("xs")]: {
       maxWidth: "85%",
+      height: "30rem",
     },
   },
   tabPanel: {
