@@ -3,8 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import BlogpostCard from "../ui/BlogpostCard";
-import axios from "axios";
 import LoadingOverlay from "react-loading-overlay";
+import railsServer from "../../api/railsServer";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +38,7 @@ const Blogposts = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    axios.get("http://localhost:4000/blogposts").then(
+    railsServer.get("/blogposts").then(
       (response) => {
         setBlogposts(response.data.blogposts);
         setIsLoading(false);

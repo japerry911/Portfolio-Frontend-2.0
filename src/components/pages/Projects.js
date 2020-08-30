@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
-import axios from "axios";
 import LoadingOverlay from "react-loading-overlay";
 import ProjectCard from "../ui/ProjectCard";
+import railsServer from "../../api/railsServer";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +38,7 @@ const Projects = ({ setValue }) => {
   useEffect(() => {
     setIsLoading(true);
 
-    axios.get("http://localhost:4000/projects").then(
+    railsServer.get("/projects").then(
       (response) => {
         setProjects(response.data.projects);
         setIsLoading(false);

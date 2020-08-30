@@ -7,10 +7,10 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import LoadingOverlay from "react-loading-overlay";
+import railsServer from "../../api/railsServer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const Alert = (props) => {
@@ -172,25 +172,23 @@ const Contact = () => {
       date: new Date(),
     };
 
-    axios
-      .post("http://localhost:4000/contact-send-email", { email_options: data })
-      .then(
-        () => {
-          setName("");
-          setEmail("");
-          setSubject("");
-          setMessage("");
-          setAlertType("success");
-          setAlertOpen(true);
-          setIsLoading(false);
-        },
-        (error) => {
-          setSendError(error);
-          setAlertType("error");
-          setAlertOpen(true);
-          setIsLoading(false);
-        }
-      );
+    railsServer.post("/contact-send-email", { email_options: data }).then(
+      () => {
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+        setAlertType("success");
+        setAlertOpen(true);
+        setIsLoading(false);
+      },
+      (error) => {
+        setSendError(error);
+        setAlertType("error");
+        setAlertOpen(true);
+        setIsLoading(false);
+      }
+    );
   };
 
   return (

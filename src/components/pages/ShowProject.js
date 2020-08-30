@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import LoadingOverlay from "react-loading-overlay";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ButtonArrow from "../ui/ButtonArrow";
 import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import railsServer from "../../api/railsServer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -82,7 +82,7 @@ const ShowProject = () => {
   useEffect(() => {
     setIsLoading(true);
 
-    axios.get(`http://localhost:4000/projects/${params.id}`).then(
+    railsServer.get(`/projects/${params.id}`).then(
       (response) => {
         setProject(response.data.project);
         setIsLoading(false);

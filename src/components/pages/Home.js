@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import ButtonArrow from "../ui/ButtonArrow";
+import { Link } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -67,7 +68,11 @@ const Home = () => {
                 I'm a Full Stack Software Engineer
                 <span className={classes.altTextColor}>.</span>
               </Typography>
-              <Button className={classes.button}>
+              <Button
+                className={classes.button}
+                component={Link}
+                to="/projects"
+              >
                 <span style={{ marginRight: 5 }}>View My Projects</span>
                 <ButtonArrow
                   width={20}
