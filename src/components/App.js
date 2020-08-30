@@ -8,6 +8,7 @@ import Footer from "./ui/Footer";
 import About from "./pages/About";
 import LoadingOverlay from "react-loading-overlay";
 import Contact from "./pages/Contact";
+import Blogposts from "./pages/Blogposts";
 
 const App = () => {
   const [value, setValue] = useState(0);
@@ -63,6 +64,7 @@ const App = () => {
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
+            <Route exact path="/blogposts" component={Blogposts} />
           </Switch>
           <Footer setValue={setValue} />
         </LoadingOverlay>
