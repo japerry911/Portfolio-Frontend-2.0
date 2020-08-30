@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import BlogpostCard from "../ui/BlogpostCard";
+import axios from "axios";
+import LoadingOverlay from "react-loading-overlay";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,67 +32,74 @@ const useStyles = makeStyles((theme) => ({
 const Blogposts = () => {
   const classes = useStyles();
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [blogposts, setBlogposts] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    axios.get("http://localhost:4000/blogposts").then(
+      (response) => {
+        setBlogposts(response.data.blogposts);
+        setIsLoading(false);
+      },
+      (error) => {
+        console.error(error);
+        setIsLoading(error);
+      }
+    );
+  }, []);
+
   return (
-    <Grid
-      container
-      direction="column"
-      className={classes.mainContainer}
-      alignItems="center"
-    >
-      <Grid item style={{ marginTop: "3rem" }}>
-        <Paper className={classes.headerPaper}>
-          <Typography
-            variant="h3"
-            className={classes.headerText}
-            align="center"
-          >
-            BLOGPOSTS
-          </Typography>
-        </Paper>
-      </Grid>
+    <LoadingOverlay active={isLoading} spinner text="Loading...">
       <Grid
-        item
         container
-        style={{ marginTop: "3rem" }}
-        direction="row"
-        justify="space-evenly"
+        direction="column"
+        className={classes.mainContainer}
+        alignItems="center"
       >
-        <Grid
-          item
-          xs={10}
-          sm={10}
-          md={5}
-          lg={5}
-          xl={5}
-          className={classes.gridCardItem}
-          align="center"
-        >
-          <BlogpostCard
-            alt="Elixir Logo"
-            imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/pluginIcon.png"
-            title="My First Impressions of Elixir"
-            maxWidth="17rem"
-          />
+        <Grid item style={{ marginTop: "3rem" }}>
+          <Paper className={classes.headerPaper}>
+            <Typography
+              variant="h3"
+              className={classes.headerText}
+              align="center"
+            >
+              BLOGPOSTS
+            </Typography>
+          </Paper>
         </Grid>
         <Grid
           item
-          xs={10}
-          sm={10}
-          md={5}
-          lg={5}
-          xl={5}
-          className={classes.gridCardItem}
-          align="center"
+          container
+          style={{ marginTop: "3rem" }}
+          direction="row"
+          justify="space-evenly"
         >
-          <BlogpostCard
-            alt="Elixir Logo"
-            imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/pluginIcon.png"
-            title="My First Impressions of Elixir"
-            maxWidth="17rem"
-          />
+          {blogposts.map((blogpost) => (
+            <Grid
+              key={blogpost.id}
+              item
+              xs={10}
+              sm={10}
+              md={5}
+              lg={5}
+              xl={5}
+              className={classes.gridCardItem}
+              align="center"
+            >
+              <BlogpostCard
+                alt="blogpost photo"
+                imgUrl={blogpost.image_url}
+                title={blogpost.name}
+                maxWidth="17rem"
+                blogUrl={blogpost.blog_link}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
-    </Grid>
+    </LoadingOverlay>
   );
 };
 

@@ -64,7 +64,13 @@ const ExperienceCard = (props) => {
         >
           {props.title}
         </Typography>
-        <Button className={classes.button}>
+        <Button
+          className={classes.button}
+          component={"a"}
+          target="_blank"
+          rel="noopener noreferrer"
+          href={props.blogUrl}
+        >
           <span style={{ marginRight: 5 }}>Read Blogpost</span>
           <ButtonArrow
             width={20}
