@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.dark,
     borderRadius: 12,
   },
+  gridCardItem: {
+    height: "40rem",
+  },
 }));
 
 const Projects = () => {
@@ -90,6 +93,7 @@ const Projects = () => {
                 imgUrl={project.image_url}
                 title={project.name}
                 maxWidth="17rem"
+                id={project.id}
               />
             </Grid>
           ))}

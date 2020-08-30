@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     marginTop: "auto",
-    maxWidth: "15rem",
+    minWidth: "25rem",
   },
   button: {
     color: theme.palette.common.black,
