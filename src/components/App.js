@@ -22,7 +22,7 @@ const App = () => {
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/jack_perry_2+(1).png",
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/logo-javascript-png-transparent-logo-javascriptpng-images-pluspng-javascript-png-587_330.png",
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/800px-React-icon.svg.png",
-      "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/ReactNative%402x.webp",
+      "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/React-native-logo-transparent%402x.png",
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/Vue-logo-1.png",
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/Go-Logo_Blue+(1).png",
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/Ruby_On_Rails_Logo.svg.png",
