@@ -21,13 +21,19 @@ const useStyles = makeStyles((theme) => ({
     height: "20rem",
     backgroundColor: theme.palette.common.green,
     width: "35rem",
-    marginTop: "2rem",
     borderRadius: 12,
   },
   image: {
     height: "auto",
     width: "30rem",
     borderRadius: 12,
+  },
+  picturePaper: {
+    width: "30rem",
+    height: "auto",
+    borderRadius: 12,
+    backgroundColor: theme.palette.common.green,
+    padding: "1rem",
   },
 }));
 
@@ -81,11 +87,13 @@ const ShowProject = () => {
             </Grid>
           </Grid>
           <Grid item xs style={{ alignSelf: "center" }} align="center">
-            <img
-              alt="Dog-Cave Logo"
-              src={project.background_image_url}
-              className={classes.image}
-            />
+            <Paper className={classes.picturePaper}>
+              <img
+                alt="Dog-Cave Logo"
+                src={project.background_image_url}
+                className={classes.image}
+              />
+            </Paper>
           </Grid>
         </Grid>
       </Grid>
