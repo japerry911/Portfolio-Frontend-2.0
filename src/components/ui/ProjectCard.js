@@ -5,6 +5,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ButtonArrow from "./ButtonArrow";
+import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
@@ -41,6 +42,17 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.common.black,
     },
   },
+  picturePaper: {
+    backgroundColor: theme.palette.common.white,
+    minWidth: "25rem",
+    padding: "1rem",
+    borderRadius: 12,
+  },
+  cardPictureDiv: {
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+  },
 }));
 
 const ProjectCard = (props) => {
@@ -49,14 +61,18 @@ const ProjectCard = (props) => {
 
   return (
     <Card className={classes.experienceCard}>
-      <CardMedia
-        component="img"
-        alt={props.alt}
-        image={props.imgUrl}
-        title={props.alt}
-        className={classes.image}
-        style={{ maxWidth: props.maxWidth }}
-      />
+      <div className={classes.cardPictureDiv}>
+        <Paper className={classes.picturePaper}>
+          <CardMedia
+            component="img"
+            alt={props.alt}
+            image={props.imgUrl}
+            title={props.alt}
+            className={classes.image}
+            style={{ maxWidth: props.maxWidth }}
+          />
+        </Paper>
+      </div>
       <CardContent style={{ marginTop: "auto" }}>
         <Typography
           variant="h5"
