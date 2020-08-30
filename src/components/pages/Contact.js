@@ -40,13 +40,23 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 12,
   },
   bodyPaper: {
-    minWidth: "45rem",
+    maxWith: "45rem",
     padding: "2rem",
     borderRadius: 12,
     backgroundColor: theme.palette.secondary.dark,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    marginBottom: "5rem",
+    [theme.breakpoints.down("md")]: {
+      maxWidth: "40rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "35rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "15rem",
+    },
   },
   textField: {
     width: "40rem",
@@ -63,6 +73,15 @@ const useStyles = makeStyles((theme) => ({
     },
     "& .MuiOutlinedInput-input": {
       color: theme.palette.common.green,
+    },
+    [theme.breakpoints.down("md")]: {
+      width: "35rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "30rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "15rem",
     },
   },
   gridItem: {
@@ -84,6 +103,15 @@ const useStyles = makeStyles((theme) => ({
       borderWidth: "1px",
       outline: "none",
     },
+    [theme.breakpoints.down("md")]: {
+      width: "34.5rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "29.5rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "14.5rem",
+    },
   },
   button: {
     width: "20rem",
@@ -97,6 +125,15 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.common.green,
       color: theme.palette.common.black,
+    },
+    [theme.breakpoints.down("md")]: {
+      width: "18rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "16rem",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "14rem",
     },
   },
 }));
