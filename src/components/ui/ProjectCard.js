@@ -5,6 +5,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import ButtonArrow from "./ButtonArrow";
+import { Link } from "react-router-dom";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     marginTop: "auto",
-    maxWidth: "15rem",
+    minWidth: "25rem",
   },
   button: {
     color: theme.palette.common.black,
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BlogpostCard = (props) => {
+const ProjectCard = (props) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -62,16 +63,14 @@ const BlogpostCard = (props) => {
           align="center"
           className={classes.cardHeaderText}
         >
-          {props.title}
+          {props.name}
         </Typography>
         <Button
           className={classes.button}
-          component={"a"}
-          target="_blank"
-          rel="noopener noreferrer"
-          href={props.blogUrl}
+          component={Link}
+          to={`/projects/${props.id}`}
         >
-          <span style={{ marginRight: 5 }}>Read Blogpost</span>
+          <span style={{ marginRight: 5 }}>Read More</span>
           <ButtonArrow
             width={20}
             height={20}
@@ -83,4 +82,4 @@ const BlogpostCard = (props) => {
   );
 };
 
-export default BlogpostCard;
+export default ProjectCard;
