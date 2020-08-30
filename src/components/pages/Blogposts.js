@@ -23,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 12,
   },
   gridCardItem: {
-    width: "20rem",
-    height: "20rem",
+    height: "40rem",
   },
 }));
 
@@ -49,8 +48,40 @@ const Blogposts = () => {
           </Typography>
         </Paper>
       </Grid>
-      <Grid item container style={{ marginTop: "3rem" }} direction="row">
-        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+      <Grid
+        item
+        container
+        style={{ marginTop: "3rem" }}
+        direction="row"
+        justify="space-evenly"
+      >
+        <Grid
+          item
+          xs={10}
+          sm={10}
+          md={5}
+          lg={5}
+          xl={5}
+          className={classes.gridCardItem}
+          align="center"
+        >
+          <BlogpostCard
+            alt="Elixir Logo"
+            imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/pluginIcon.png"
+            title="My First Impressions of Elixir"
+            maxWidth="17rem"
+          />
+        </Grid>
+        <Grid
+          item
+          xs={10}
+          sm={10}
+          md={5}
+          lg={5}
+          xl={5}
+          className={classes.gridCardItem}
+          align="center"
+        >
           <BlogpostCard
             alt="Elixir Logo"
             imgUrl="https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/pluginIcon.png"

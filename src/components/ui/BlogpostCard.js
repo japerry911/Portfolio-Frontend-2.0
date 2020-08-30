@@ -10,8 +10,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   experienceCard: {
     backgroundColor: theme.palette.common.green,
-    width: "90%",
-    height: "90%",
+    width: "80%",
+    height: "80%",
     padding: "1rem",
     borderRadius: 12,
     display: "flex",
@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "15rem",
   },
   button: {
-    color: theme.palette.common.green,
-    border: `3pt solid ${theme.palette.common.blue}`,
+    color: theme.palette.common.black,
+    border: `3pt solid ${theme.palette.common.black}`,
     borderRadius: 50,
     padding: "1rem",
-    backgroundColor: "transparent",
+    backgroundColor: theme.palette.common.blue,
     marginTop: "2rem",
     transition: "background-color 500ms ease-in",
     "&:hover": {
@@ -69,7 +69,7 @@ const ExperienceCard = (props) => {
           <ButtonArrow
             width={20}
             height={20}
-            fill={theme.palette.common.green}
+            fill={theme.palette.common.black}
           />
         </Button>
       </CardContent>
