@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Footer from "./ui/Footer";
 import About from "./pages/About";
 import LoadingOverlay from "react-loading-overlay";
+import Contact from "./pages/Contact";
 
 const App = () => {
   const [value, setValue] = useState(0);
@@ -33,6 +34,7 @@ const App = () => {
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/icon_cloud_192pt_clr.png",
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/873120.png",
       "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/Home/caspar-camille-rubin-fPkvU7RDmCo-unsplash.jpg",
+      "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/Contact/luca-bravo-XJXWbfSo2f0-unsplash.jpg",
     ];
 
     cacheImages(imgs);
@@ -60,6 +62,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
+            <Route exact path="/contact" component={Contact} />
           </Switch>
           <Footer setValue={setValue} />
         </LoadingOverlay>
