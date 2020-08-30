@@ -85,6 +85,7 @@ const ProjectCard = (props) => {
           className={classes.button}
           component={Link}
           to={`/projects/${props.id}`}
+          onClick={() => props.setValue(2)}
         >
           <span style={{ marginRight: 5 }}>Read More</span>
           <ButtonArrow

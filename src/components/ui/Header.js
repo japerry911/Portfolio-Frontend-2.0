@@ -149,6 +149,9 @@ const Header = ({ value, setValue }) => {
           }
           break;
         default:
+          if (/\/projects\/*/.test(window.location.pathname)) {
+            setValue(2);
+          }
           break;
       }
     });

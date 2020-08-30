@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Projects = () => {
+const Projects = ({ setValue }) => {
   const classes = useStyles();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -94,6 +94,7 @@ const Projects = () => {
                 title={project.name}
                 maxWidth="17rem"
                 id={project.id}
+                setValue={setValue}
               />
             </Grid>
           ))}
