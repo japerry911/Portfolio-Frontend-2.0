@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
@@ -8,7 +8,14 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import MuiAlert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
+import LoadingOverlay from "react-loading-overlay";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+
+const Alert = (props) => {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+};
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -74,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "&:focus": {
       borderColor: theme.palette.common.green,
-      borderWidth: "2px",
+      borderWidth: "1px",
       outline: "none",
     },
   },
@@ -102,9 +109,23 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertType, setAlertType] = useState("success");
+  const [sendError, setSendError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setAlertOpen(false);
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
+
+    setIsLoading(true);
 
     const data = {
       name,
@@ -122,114 +143,135 @@ const Contact = () => {
           setEmail("");
           setSubject("");
           setMessage("");
+          setAlertType("success");
+          setAlertOpen(true);
+          setIsLoading(false);
         },
         (error) => {
-          console.log(error);
+          setSendError(error);
+          setAlertType("error");
+          setAlertOpen(true);
+          setIsLoading(false);
         }
       );
   };
 
   return (
-    <Grid
-      container
-      direction="column"
-      className={classes.mainContainer}
-      alignItems="center"
-    >
-      <Grid item style={{ marginTop: "3rem" }}>
-        <Paper className={classes.headerPaper}>
-          <Typography
-            variant="h3"
-            className={classes.headerText}
-            align="center"
+    <Fragment>
+      <LoadingOverlay active={isLoading} spinner text="Sending Message...">
+        <Grid
+          container
+          direction="column"
+          className={classes.mainContainer}
+          alignItems="center"
+        >
+          <Grid item style={{ marginTop: "3rem" }}>
+            <Paper className={classes.headerPaper}>
+              <Typography
+                variant="h3"
+                className={classes.headerText}
+                align="center"
+              >
+                CONTACT JACK
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid
+            item
+            style={{ marginTop: "3rem" }}
+            container
+            direction="column"
+            alignItems="center"
           >
-            CONTACT JACK
-          </Typography>
-        </Paper>
-      </Grid>
-      <Grid
-        item
-        style={{ marginTop: "3rem" }}
-        container
-        direction="column"
-        alignItems="center"
-      >
-        <Paper className={classes.bodyPaper}>
-          <form
-            onSubmit={onSubmit}
-            style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Grid item>
-              <TextField
-                className={classes.textField}
-                color="primary"
-                variant="outlined"
-                label="Name"
-                value={name}
-                onChange={(newName) => setName(newName.target.value)}
-                required
-              />
-            </Grid>
-            <Grid item className={classes.gridItem}>
-              <TextField
-                className={classes.textField}
-                color="primary"
-                variant="outlined"
-                label="Email"
-                value={email}
-                onChange={(newEmail) => setEmail(newEmail.target.value)}
-                required
-              />
-            </Grid>
-            <Grid item className={classes.gridItem}>
-              <TextField
-                className={classes.textField}
-                color="primary"
-                variant="outlined"
-                label="Subject"
-                value={subject}
-                onChange={(newSubject) => setSubject(newSubject.target.value)}
-                required
-              />
-            </Grid>
-            <Grid item style={{ marginTop: "1rem" }}>
-              <FormControl className={classes.formControlStyle}>
-                <InputLabel
-                  shrink={message !== ""}
-                  style={{
-                    position: "absolute",
-                    color: theme.palette.common.green,
-                  }}
-                >
-                  &nbsp;&nbsp;Message*
-                </InputLabel>
-                <TextareaAutosize
-                  className={classes.textarea}
-                  color="primary"
-                  variant="outlined"
-                  label="Message"
-                  rowsMin={10}
-                  rowsMax={10}
-                  value={message}
-                  onChange={(newMessage) => setMessage(newMessage.target.value)}
-                />
-              </FormControl>
-            </Grid>
-            <Grid item>
-              <Button className={classes.button} type="submit">
-                Send Message
-              </Button>
-            </Grid>
-          </form>
-        </Paper>
-      </Grid>
-    </Grid>
+            <Paper className={classes.bodyPaper}>
+              <form
+                onSubmit={onSubmit}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Grid item>
+                  <TextField
+                    className={classes.textField}
+                    color="primary"
+                    variant="outlined"
+                    label="Name"
+                    value={name}
+                    onChange={(newName) => setName(newName.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item className={classes.gridItem}>
+                  <TextField
+                    className={classes.textField}
+                    color="primary"
+                    variant="outlined"
+                    label="Email"
+                    value={email}
+                    onChange={(newEmail) => setEmail(newEmail.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item className={classes.gridItem}>
+                  <TextField
+                    className={classes.textField}
+                    color="primary"
+                    variant="outlined"
+                    label="Subject"
+                    value={subject}
+                    onChange={(newSubject) =>
+                      setSubject(newSubject.target.value)
+                    }
+                    required
+                  />
+                </Grid>
+                <Grid item style={{ marginTop: "1rem" }}>
+                  <FormControl className={classes.formControlStyle}>
+                    <InputLabel
+                      shrink={message !== ""}
+                      style={{
+                        position: "absolute",
+                        color: theme.palette.common.green,
+                      }}
+                    >
+                      &nbsp;&nbsp;Message*
+                    </InputLabel>
+                    <TextareaAutosize
+                      className={classes.textarea}
+                      color="primary"
+                      variant="outlined"
+                      label="Message"
+                      rowsMin={10}
+                      rowsMax={10}
+                      value={message}
+                      onChange={(newMessage) =>
+                        setMessage(newMessage.target.value)
+                      }
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item>
+                  <Button className={classes.button} type="submit">
+                    Send Message
+                  </Button>
+                </Grid>
+              </form>
+            </Paper>
+          </Grid>
+        </Grid>
+        <Snackbar open={alertOpen} onClose={handleAlertClose}>
+          <Alert onClose={handleAlertClose} severity={alertType}>
+            {alertType === "success"
+              ? "Email successfully sent"
+              : `Email failed - ${sendError}`}
+          </Alert>
+        </Snackbar>
+      </LoadingOverlay>
+    </Fragment>
   );
 };
 
