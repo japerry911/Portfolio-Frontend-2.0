@@ -10,6 +10,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ButtonArrow from "../ui/ButtonArrow";
 import Button from "@material-ui/core/Button";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,23 +25,31 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     minHeight: "20rem",
     backgroundColor: theme.palette.common.green,
-    maxWidth: "50rem",
+    maxWidth: "30rem",
     borderRadius: 12,
+    margin: "1rem",
   },
   image: {
     height: "auto",
-    width: "30rem",
+    maxWidth: "30rem",
     borderRadius: 12,
+    [theme.breakpoints.down("md")]: {
+      maxWidth: "15rem",
+    },
   },
   picturePaper: {
-    width: "30rem",
+    maxWidth: "30rem",
     height: "auto",
     borderRadius: 12,
     backgroundColor: theme.palette.common.green,
     padding: "1rem",
+    [theme.breakpoints.down("md")]: {
+      maxWidth: "15rem",
+    },
   },
   button: {
-    width: "20rem",
+    fontSize: "0.75rem",
+    width: "18rem",
     color: theme.palette.common.black,
     border: `3pt solid ${theme.palette.common.green}`,
     borderRadius: 50,
@@ -53,12 +62,17 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.common.black,
       borderColor: theme.palette.common.blue,
     },
+    [theme.breakpoints.down("md")]: {
+      width: "16rem",
+    },
   },
 }));
 
 const ShowProject = () => {
   const classes = useStyles();
   const theme = useTheme();
+
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [isLoading, setIsLoading] = useState(true);
   const [project, setProject] = useState({});
@@ -95,7 +109,7 @@ const ShowProject = () => {
         <Grid
           item
           container
-          direction="row"
+          direction={matchesSM ? "column-reverse" : "row"}
           style={{ marginTop: "5rem" }}
           alignItems="center"
         >
@@ -117,7 +131,15 @@ const ShowProject = () => {
               </Grid>
             </Paper>
           </Grid>
-          <Grid item xs style={{ alignSelf: "center" }} align="center">
+          <Grid
+            item
+            xs
+            style={{
+              alignSelf: "center",
+              marginBottom: matchesSM ? "3rem" : 0,
+            }}
+            align="center"
+          >
             <Paper className={classes.picturePaper}>
               <img
                 alt="Project Logo"
@@ -130,9 +152,10 @@ const ShowProject = () => {
         <Grid
           item
           container
-          direction="row"
+          direction={matchesSM ? "column" : "row"}
           justify="space-evenly"
-          style={{ marginTop: "5rem" }}
+          align={matchesSM ? "center" : undefined}
+          style={{ margin: "5rem 0" }}
         >
           {project.link1 ? (
             <Grid item>

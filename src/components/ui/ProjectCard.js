@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     marginTop: "auto",
-    minWidth: "25rem",
+    maxWidth: "90%",
   },
   button: {
     color: theme.palette.common.black,
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   picturePaper: {
     backgroundColor: theme.palette.common.white,
-    minWidth: "25rem",
+    maxWidth: "90%",
     padding: "1rem",
     borderRadius: 12,
   },

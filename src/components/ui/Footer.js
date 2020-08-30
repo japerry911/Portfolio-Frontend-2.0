@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import linkedin from "../../assets/linkedin.svg";
 import github from "../../assets/github.svg";
 import medium from "../../assets/medium.svg";
+import Hidden from "@material-ui/core/Hidden";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -44,20 +45,22 @@ const Footer = ({ setValue }) => {
   return (
     <footer className={classes.footer}>
       <Grid container alignItems="center" justify="space-around">
-        {routes.map((routeObject) => (
-          <Grid
-            key={`${routeObject}-${routeObject.activeIndex}`}
-            item
-            component={Link}
-            to={routeObject.link}
-            onClick={() => setValue(routeObject.activeIndex)}
-            className={classes.link}
-          >
-            {routeObject.name}
-          </Grid>
-        ))}
+        <Hidden mdDown>
+          {routes.map((routeObject) => (
+            <Grid
+              key={`${routeObject}-${routeObject.activeIndex}`}
+              item
+              component={Link}
+              to={routeObject.link}
+              onClick={() => setValue(routeObject.activeIndex)}
+              className={classes.link}
+            >
+              {routeObject.name}
+            </Grid>
+          ))}
+        </Hidden>
         <Grid item>
-          <Grid container justify="space-between">
+          <Grid container direction="row" justify="space-between">
             <Grid
               item
               component={"a"}

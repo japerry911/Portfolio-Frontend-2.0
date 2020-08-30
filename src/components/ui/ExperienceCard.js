@@ -8,13 +8,22 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   experienceCard: {
     backgroundColor: theme.palette.common.green,
-    width: "90%",
+    width: "60%",
     height: "90%",
     padding: "1rem",
     borderRadius: 12,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    [theme.breakpoints.down("md")]: {
+      width: "90%",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "40%",
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "70%",
+    },
   },
   cardHeaderText: {
     ...theme.typography.h5,

@@ -59,7 +59,7 @@ const Home = () => {
         >
           <Grid item>
             <Paper className={classes.paper}>
-              <Typography variant="h3">
+              <Typography variant="h3" paragraph>
                 Greetings, I'm{" "}
                 <span className={classes.altTextColor}>Jack Perry</span>.
               </Typography>
