@@ -273,7 +273,7 @@ const Contact = () => {
                         color: theme.palette.common.green,
                       }}
                     >
-                      &nbsp;&nbsp;Message*
+                      &nbsp;&nbsp;Message&nbsp;*
                     </InputLabel>
                     <TextareaAutosize
                       className={classes.textarea}
@@ -283,6 +283,7 @@ const Contact = () => {
                       rowsMin={10}
                       rowsMax={10}
                       value={message}
+                      required
                       onChange={(newMessage) =>
                         setMessage(newMessage.target.value)
                       }

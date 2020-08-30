@@ -106,6 +106,7 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.tab,
     color: "#fff",
     opacity: 0.7,
+    fontFamily: "Roboto",
   },
   drawerItemSelected: {
     "& .MuiListItemText-root": {

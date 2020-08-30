@@ -90,7 +90,8 @@ const About = () => {
     {
       title: "React Native JS",
       imgUrl:
-        "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/ReactNative%402x.webp",
+        "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/React-native-logo-transparent%402x.png",
+      maxWidth: "11rem",
     },
     {
       title: "Vue JS",
@@ -193,6 +194,7 @@ const About = () => {
         style={{
           marginTop: "5rem",
           marginBottom: matchesXS ? "10rem" : "5rem",
+          minHeight: "50rem",
         }}
         alignItems="center"
       >
