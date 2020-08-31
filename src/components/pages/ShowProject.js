@@ -110,26 +110,28 @@ const ShowProject = () => {
           item
           container
           direction={matchesSM ? "column-reverse" : "row"}
-          style={{ marginTop: "5rem" }}
+          style={{ marginTop: "5rem", minHeight: matchesSM ? "40rem" : 0 }}
           alignItems="center"
         >
-          <Grid item container direction="column" xs alignItems="center">
-            <Paper className={classes.paper}>
-              <Grid item>
-                <List>
-                  {project.features !== undefined
-                    ? project.features.split("|||").map((feature, index) => (
-                        <ListItem key={index}>
-                          <ListItemText
-                            primary={`- ${feature}`}
-                            style={{ color: theme.palette.common.white }}
-                          />
-                        </ListItem>
-                      ))
-                    : null}
-                </List>
-              </Grid>
-            </Paper>
+          <Grid item>
+            <Grid container direction="column" xs alignItems="center">
+              <Paper className={classes.paper}>
+                <Grid item>
+                  <List>
+                    {project.features !== undefined
+                      ? project.features.split("|||").map((feature, index) => (
+                          <ListItem key={index}>
+                            <ListItemText
+                              primary={`- ${feature}`}
+                              style={{ color: theme.palette.common.white }}
+                            />
+                          </ListItem>
+                        ))
+                      : null}
+                  </List>
+                </Grid>
+              </Paper>
+            </Grid>
           </Grid>
           <Grid
             item
