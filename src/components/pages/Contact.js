@@ -250,6 +250,7 @@ const Contact = () => {
                 </Grid>
                 <Grid item>
                   <Button
+                    disabled={!name || !email || !subject || !message}
                     className={classes.button}
                     onClick={() => setDialogOpen(true)}
                   >
@@ -349,7 +350,9 @@ const Contact = () => {
                 <Button
                   className={classes.button}
                   onClick={onSubmit}
-                  disabled={isLoading}
+                  disabled={
+                    isLoading || !name || !email || !subject || !message
+                  }
                 >
                   {isLoading ? <CircularProgress size={30} /> : "Send Message"}
                 </Button>
