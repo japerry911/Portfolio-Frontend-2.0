@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), 
     url(https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/Projects/joshua-aragon-BMnhuwFYr7w-unsplash.jpg)`,
     backgroundAttachment: "fixed",
+    backgroundSize: "cover",
   },
   headerText: {
     ...theme.typography.h3,

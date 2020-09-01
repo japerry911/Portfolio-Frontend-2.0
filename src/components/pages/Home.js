@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), 
       url(https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/Home/caspar-camille-rubin-fPkvU7RDmCo-unsplash.jpg)`,
     backgroundAttachment: "fixed",
-    backgorundColor: theme.palette.common.black,
+    backgroundColor: theme.palette.common.black,
+    backgroundSize: "cover",
   },
   paper: {
     maxWidth: "40rem",
