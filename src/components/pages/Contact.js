@@ -9,6 +9,9 @@ import Snackbar from "@material-ui/core/Snackbar";
 import LoadingOverlay from "react-loading-overlay";
 import railsServer from "../../api/railsServer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const Alert = (props) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -21,11 +24,6 @@ const useStyles = makeStyles((theme) => ({
       url(https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/Contact/luca-bravo-XJXWbfSo2f0-unsplash.jpg)`,
     backgroundAttachment: "fixed",
     backgroundSize: "cover",
-  },
-  formControlStyle: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
   headerText: {
     ...theme.typography.h3,
@@ -76,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
       width: "35rem",
     },
     [theme.breakpoints.down("sm")]: {
-      width: "30rem",
+      width: "25rem",
     },
     [theme.breakpoints.down("xs")]: {
       width: "15rem",
@@ -85,34 +83,8 @@ const useStyles = makeStyles((theme) => ({
   gridItem: {
     marginTop: "2rem",
   },
-  textarea: {
-    margin: "1.15rem 0",
-    width: "39.5rem",
-    backgroundColor: theme.palette.secondary.dark,
-    borderColor: theme.palette.common.blue,
-    borderRadius: "4px",
-    color: theme.palette.common.green,
-    fontFamily: "Roboto",
-    "&:hover": {
-      borderColor: theme.palette.common.green,
-    },
-    "&:focus": {
-      borderColor: theme.palette.common.green,
-      borderWidth: "1px",
-      outline: "none",
-    },
-    [theme.breakpoints.down("md")]: {
-      width: "34.5rem",
-    },
-    [theme.breakpoints.down("sm")]: {
-      width: "29.5rem",
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "14.5rem",
-    },
-  },
   button: {
-    width: "20rem",
+    width: "15rem",
     color: theme.palette.common.green,
     border: `3pt solid ${theme.palette.common.blue}`,
     borderRadius: 50,
@@ -125,13 +97,11 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.common.black,
     },
     [theme.breakpoints.down("md")]: {
-      width: "18rem",
+      width: "13rem",
     },
     [theme.breakpoints.down("sm")]: {
-      width: "14rem",
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "12rem",
+      width: "9rem",
+      fontSize: "0.7rem",
     },
   },
 }));
@@ -139,6 +109,9 @@ const useStyles = makeStyles((theme) => ({
 const Contact = () => {
   const classes = useStyles();
   const theme = useTheme();
+
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -148,6 +121,7 @@ const Contact = () => {
   const [alertType, setAlertType] = useState("success");
   const [sendError, setSendError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleAlertClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -274,13 +248,103 @@ const Contact = () => {
                     />
                   </Grid>
                   <Grid item>
-                    <Button className={classes.button}>Send Message</Button>
+                    <Button
+                      className={classes.button}
+                      onClick={() => setDialogOpen(true)}
+                    >
+                      Send Message
+                    </Button>
                   </Grid>
                 </Grid>
               </Paper>
             </Grid>
           </Grid>
         </Grid>
+        <Dialog
+          style={{ zIndex: 1302 }}
+          open={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          PaperProps={{
+            style: {
+              padding: "1rem",
+              height: "80%",
+              maxWidth: matchesSM ? "100%" : matchesMD ? "60rem" : "90rem",
+            },
+          }}
+          fullScreen={matchesSM}
+        >
+          <DialogContent>
+            <Grid
+              container
+              direction="column"
+              alignItems="center"
+              justify="center"
+            >
+              <Grid item>
+                <Typography variant="h3">Confirm Message</Typography>
+              </Grid>
+              <Grid item className={classes.gridItem}>
+                <TextField
+                  className={classes.textField}
+                  color="primary"
+                  variant="outlined"
+                  label="Name"
+                  value={name}
+                  onChange={(newName) => setName(newName.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item className={classes.gridItem}>
+                <TextField
+                  className={classes.textField}
+                  color="primary"
+                  variant="outlined"
+                  label="Email"
+                  value={email}
+                  onChange={(newEmail) => setEmail(newEmail.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item className={classes.gridItem}>
+                <TextField
+                  className={classes.textField}
+                  color="primary"
+                  variant="outlined"
+                  label="Subject"
+                  value={subject}
+                  onChange={(newSubject) => setSubject(newSubject.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item className={classes.gridItem}>
+                <TextField
+                  className={classes.textField}
+                  color="primary"
+                  variant="outlined"
+                  label="Message"
+                  required
+                  multiline
+                  rows={10}
+                  onChange={(newMessage) => setMessage(newMessage.target.value)}
+                />
+              </Grid>
+              <Grid
+                item
+                container
+                direction={matchesSM ? "column" : "row"}
+                justify="space-around"
+                alignItems={matchesSM ? "center" : undefined}
+              >
+                <Grid item>
+                  <Button className={classes.button}>Cancel</Button>
+                </Grid>
+                <Grid item>
+                  <Button className={classes.button}>Send Message</Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </DialogContent>
+        </Dialog>
         <Snackbar open={alertOpen} onClose={handleAlertClose}>
           <Alert onClose={handleAlertClose} severity={alertType}>
             {alertType === "success"
