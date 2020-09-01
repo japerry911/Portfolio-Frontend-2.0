@@ -6,12 +6,12 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
-import LoadingOverlay from "react-loading-overlay";
 import railsServer from "../../api/railsServer";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Alert = (props) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -152,6 +152,7 @@ const Contact = () => {
         setMessage("");
         setAlertType("success");
         setAlertOpen(true);
+        setDialogOpen(false);
         setIsLoading(false);
       },
       (error) => {
@@ -165,194 +166,205 @@ const Contact = () => {
 
   return (
     <Fragment>
-      <LoadingOverlay active={isLoading} spinner text="Sending Message...">
+      <Grid
+        container
+        direction="column"
+        className={classes.mainContainer}
+        alignItems="center"
+      >
+        <Grid item style={{ marginTop: "3rem" }}>
+          <Paper className={classes.headerPaper}>
+            <Typography
+              variant="h3"
+              className={classes.headerText}
+              align="center"
+            >
+              CONTACT JACK
+            </Typography>
+          </Paper>
+        </Grid>
         <Grid
+          item
+          style={{ marginTop: "3rem" }}
           container
           direction="column"
-          className={classes.mainContainer}
           alignItems="center"
         >
-          <Grid item style={{ marginTop: "3rem" }}>
-            <Paper className={classes.headerPaper}>
-              <Typography
-                variant="h3"
-                className={classes.headerText}
-                align="center"
+          <Grid item>
+            <Paper className={classes.bodyPaper}>
+              <Grid
+                container
+                direction="column"
+                alignItems="center"
+                justify="center"
               >
-                CONTACT JACK
-              </Typography>
+                <Grid item>
+                  <TextField
+                    className={classes.textField}
+                    color="primary"
+                    variant="outlined"
+                    label="Name"
+                    value={name}
+                    onChange={(newName) => setName(newName.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item className={classes.gridItem}>
+                  <TextField
+                    className={classes.textField}
+                    color="primary"
+                    variant="outlined"
+                    label="Email"
+                    value={email}
+                    onChange={(newEmail) => setEmail(newEmail.target.value)}
+                    required
+                  />
+                </Grid>
+                <Grid item className={classes.gridItem}>
+                  <TextField
+                    className={classes.textField}
+                    color="primary"
+                    variant="outlined"
+                    label="Subject"
+                    value={subject}
+                    onChange={(newSubject) =>
+                      setSubject(newSubject.target.value)
+                    }
+                    required
+                  />
+                </Grid>
+                <Grid item className={classes.gridItem}>
+                  <TextField
+                    className={classes.textField}
+                    color="primary"
+                    variant="outlined"
+                    label="Message"
+                    required
+                    multiline
+                    rows={10}
+                    onChange={(newMessage) =>
+                      setMessage(newMessage.target.value)
+                    }
+                    value={message}
+                  />
+                </Grid>
+                <Grid item>
+                  <Button
+                    className={classes.button}
+                    onClick={() => setDialogOpen(true)}
+                  >
+                    Send Message
+                  </Button>
+                </Grid>
+              </Grid>
             </Paper>
           </Grid>
+        </Grid>
+      </Grid>
+      <Dialog
+        style={{ zIndex: 1302 }}
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        PaperProps={{
+          style: {
+            padding: "1rem",
+            height: "80%",
+            maxWidth: matchesSM ? "100%" : matchesMD ? "60rem" : "90rem",
+          },
+        }}
+        fullScreen={matchesSM}
+      >
+        <DialogContent>
           <Grid
-            item
-            style={{ marginTop: "3rem" }}
             container
             direction="column"
             alignItems="center"
+            justify="center"
           >
             <Grid item>
-              <Paper className={classes.bodyPaper}>
-                <Grid
-                  container
-                  direction="column"
-                  alignItems="center"
-                  justify="center"
-                >
-                  <Grid item>
-                    <TextField
-                      className={classes.textField}
-                      color="primary"
-                      variant="outlined"
-                      label="Name"
-                      value={name}
-                      onChange={(newName) => setName(newName.target.value)}
-                      required
-                    />
-                  </Grid>
-                  <Grid item className={classes.gridItem}>
-                    <TextField
-                      className={classes.textField}
-                      color="primary"
-                      variant="outlined"
-                      label="Email"
-                      value={email}
-                      onChange={(newEmail) => setEmail(newEmail.target.value)}
-                      required
-                    />
-                  </Grid>
-                  <Grid item className={classes.gridItem}>
-                    <TextField
-                      className={classes.textField}
-                      color="primary"
-                      variant="outlined"
-                      label="Subject"
-                      value={subject}
-                      onChange={(newSubject) =>
-                        setSubject(newSubject.target.value)
-                      }
-                      required
-                    />
-                  </Grid>
-                  <Grid item className={classes.gridItem}>
-                    <TextField
-                      className={classes.textField}
-                      color="primary"
-                      variant="outlined"
-                      label="Message"
-                      required
-                      multiline
-                      rows={10}
-                      onChange={(newMessage) =>
-                        setMessage(newMessage.target.value)
-                      }
-                    />
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      className={classes.button}
-                      onClick={() => setDialogOpen(true)}
-                    >
-                      Send Message
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Paper>
+              <Typography variant="h3">Confirm Message</Typography>
             </Grid>
-          </Grid>
-        </Grid>
-        <Dialog
-          style={{ zIndex: 1302 }}
-          open={dialogOpen}
-          onClose={() => setDialogOpen(false)}
-          PaperProps={{
-            style: {
-              padding: "1rem",
-              height: "80%",
-              maxWidth: matchesSM ? "100%" : matchesMD ? "60rem" : "90rem",
-            },
-          }}
-          fullScreen={matchesSM}
-        >
-          <DialogContent>
+            <Grid item className={classes.gridItem}>
+              <TextField
+                className={classes.textField}
+                color="primary"
+                variant="outlined"
+                label="Name"
+                value={name}
+                onChange={(newName) => setName(newName.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item className={classes.gridItem}>
+              <TextField
+                className={classes.textField}
+                color="primary"
+                variant="outlined"
+                label="Email"
+                value={email}
+                onChange={(newEmail) => setEmail(newEmail.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item className={classes.gridItem}>
+              <TextField
+                className={classes.textField}
+                color="primary"
+                variant="outlined"
+                label="Subject"
+                value={subject}
+                onChange={(newSubject) => setSubject(newSubject.target.value)}
+                required
+              />
+            </Grid>
+            <Grid item className={classes.gridItem}>
+              <TextField
+                className={classes.textField}
+                color="primary"
+                variant="outlined"
+                label="Message"
+                required
+                multiline
+                rows={10}
+                onChange={(newMessage) => setMessage(newMessage.target.value)}
+                value={message}
+              />
+            </Grid>
             <Grid
+              item
               container
-              direction="column"
-              alignItems="center"
-              justify="center"
+              direction={matchesSM ? "column" : "row"}
+              justify="space-around"
+              alignItems={matchesSM ? "center" : undefined}
             >
               <Grid item>
-                <Typography variant="h3">Confirm Message</Typography>
+                <Button
+                  className={classes.button}
+                  onClick={() => setDialogOpen(false)}
+                >
+                  Cancel
+                </Button>
               </Grid>
-              <Grid item className={classes.gridItem}>
-                <TextField
-                  className={classes.textField}
-                  color="primary"
-                  variant="outlined"
-                  label="Name"
-                  value={name}
-                  onChange={(newName) => setName(newName.target.value)}
-                  required
-                />
-              </Grid>
-              <Grid item className={classes.gridItem}>
-                <TextField
-                  className={classes.textField}
-                  color="primary"
-                  variant="outlined"
-                  label="Email"
-                  value={email}
-                  onChange={(newEmail) => setEmail(newEmail.target.value)}
-                  required
-                />
-              </Grid>
-              <Grid item className={classes.gridItem}>
-                <TextField
-                  className={classes.textField}
-                  color="primary"
-                  variant="outlined"
-                  label="Subject"
-                  value={subject}
-                  onChange={(newSubject) => setSubject(newSubject.target.value)}
-                  required
-                />
-              </Grid>
-              <Grid item className={classes.gridItem}>
-                <TextField
-                  className={classes.textField}
-                  color="primary"
-                  variant="outlined"
-                  label="Message"
-                  required
-                  multiline
-                  rows={10}
-                  onChange={(newMessage) => setMessage(newMessage.target.value)}
-                />
-              </Grid>
-              <Grid
-                item
-                container
-                direction={matchesSM ? "column" : "row"}
-                justify="space-around"
-                alignItems={matchesSM ? "center" : undefined}
-              >
-                <Grid item>
-                  <Button className={classes.button}>Cancel</Button>
-                </Grid>
-                <Grid item>
-                  <Button className={classes.button}>Send Message</Button>
-                </Grid>
+              <Grid item>
+                <Button
+                  className={classes.button}
+                  onClick={onSubmit}
+                  disabled={isLoading}
+                >
+                  {isLoading ? <CircularProgress size={30} /> : "Send Message"}
+                </Button>
               </Grid>
             </Grid>
-          </DialogContent>
-        </Dialog>
-        <Snackbar open={alertOpen} onClose={handleAlertClose}>
-          <Alert onClose={handleAlertClose} severity={alertType}>
-            {alertType === "success"
-              ? "Email successfully sent"
-              : `Email failed - ${sendError}`}
-          </Alert>
-        </Snackbar>
-      </LoadingOverlay>
+          </Grid>
+        </DialogContent>
+      </Dialog>
+      <Snackbar open={alertOpen} onClose={handleAlertClose}>
+        <Alert onClose={handleAlertClose} severity={alertType}>
+          {alertType === "success"
+            ? "Email successfully sent"
+            : `Email failed - ${sendError}`}
+        </Alert>
+      </Snackbar>
     </Fragment>
   );
 };
