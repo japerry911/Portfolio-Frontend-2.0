@@ -3,9 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -131,10 +128,10 @@ const useStyles = makeStyles((theme) => ({
       width: "18rem",
     },
     [theme.breakpoints.down("sm")]: {
-      width: "16rem",
+      width: "14rem",
     },
     [theme.breakpoints.down("xs")]: {
-      width: "14rem",
+      width: "12rem",
     },
   },
 }));
@@ -219,85 +216,69 @@ const Contact = () => {
             direction="column"
             alignItems="center"
           >
-            <Paper className={classes.bodyPaper}>
-              <form
-                onSubmit={onSubmit}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Grid item>
-                  <TextField
-                    className={classes.textField}
-                    color="primary"
-                    variant="outlined"
-                    label="Name"
-                    value={name}
-                    onChange={(newName) => setName(newName.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item className={classes.gridItem}>
-                  <TextField
-                    className={classes.textField}
-                    color="primary"
-                    variant="outlined"
-                    label="Email"
-                    value={email}
-                    onChange={(newEmail) => setEmail(newEmail.target.value)}
-                    required
-                  />
-                </Grid>
-                <Grid item className={classes.gridItem}>
-                  <TextField
-                    className={classes.textField}
-                    color="primary"
-                    variant="outlined"
-                    label="Subject"
-                    value={subject}
-                    onChange={(newSubject) =>
-                      setSubject(newSubject.target.value)
-                    }
-                    required
-                  />
-                </Grid>
-                <Grid item style={{ marginTop: "1rem" }}>
-                  <FormControl className={classes.formControlStyle}>
-                    <InputLabel
-                      shrink={message !== ""}
-                      style={{
-                        position: "absolute",
-                        color: theme.palette.common.green,
-                      }}
-                    >
-                      &nbsp;&nbsp;Message&nbsp;*
-                    </InputLabel>
-                    <TextareaAutosize
-                      className={classes.textarea}
+            <Grid item>
+              <Paper className={classes.bodyPaper}>
+                <Grid
+                  container
+                  direction="column"
+                  alignItems="center"
+                  justify="center"
+                >
+                  <Grid item>
+                    <TextField
+                      className={classes.textField}
+                      color="primary"
+                      variant="outlined"
+                      label="Name"
+                      value={name}
+                      onChange={(newName) => setName(newName.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item className={classes.gridItem}>
+                    <TextField
+                      className={classes.textField}
+                      color="primary"
+                      variant="outlined"
+                      label="Email"
+                      value={email}
+                      onChange={(newEmail) => setEmail(newEmail.target.value)}
+                      required
+                    />
+                  </Grid>
+                  <Grid item className={classes.gridItem}>
+                    <TextField
+                      className={classes.textField}
+                      color="primary"
+                      variant="outlined"
+                      label="Subject"
+                      value={subject}
+                      onChange={(newSubject) =>
+                        setSubject(newSubject.target.value)
+                      }
+                      required
+                    />
+                  </Grid>
+                  <Grid item className={classes.gridItem}>
+                    <TextField
+                      className={classes.textField}
                       color="primary"
                       variant="outlined"
                       label="Message"
-                      rowsMin={10}
-                      rowsMax={10}
-                      value={message}
                       required
+                      multiline
+                      rows={10}
                       onChange={(newMessage) =>
                         setMessage(newMessage.target.value)
                       }
                     />
-                  </FormControl>
+                  </Grid>
+                  <Grid item>
+                    <Button className={classes.button}>Send Message</Button>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <Button className={classes.button} type="submit">
-                    Send Message
-                  </Button>
-                </Grid>
-              </form>
-            </Paper>
+              </Paper>
+            </Grid>
           </Grid>
         </Grid>
         <Snackbar open={alertOpen} onClose={handleAlertClose}>
