@@ -103,6 +103,9 @@ const useStyles = makeStyles((theme) => ({
       width: "9rem",
       fontSize: "0.7rem",
     },
+    "&.MuiButton-root.Mui-disabled": {
+      color: "red",
+    },
   },
 }));
 
