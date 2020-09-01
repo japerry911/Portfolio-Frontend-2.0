@@ -274,6 +274,7 @@ const Contact = () => {
             padding: "1rem",
             height: "80%",
             maxWidth: matchesSM ? "100%" : matchesMD ? "60rem" : "90rem",
+            backgroundColor: theme.palette.common.black,
           },
         }}
         fullScreen={matchesSM}
