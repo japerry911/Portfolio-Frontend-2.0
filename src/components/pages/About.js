@@ -78,6 +78,11 @@ const About = () => {
 
   const experienceArray = [
     {
+      title: "GraphQL",
+      imgUrl:
+        "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/GraphQL_Logo.svg.png",
+    },
+    {
       title: "JavaScript",
       imgUrl:
         "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/logo-javascript-png-transparent-logo-javascriptpng-images-pluspng-javascript-png-587_330.png",
