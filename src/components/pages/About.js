@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     width: "20rem",
     height: "20rem",
     margin: "1rem",
+    marginBottom: "10rem",
   },
   experienceContainer: {
     marginTop: "3rem",
