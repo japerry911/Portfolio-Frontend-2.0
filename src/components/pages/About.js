@@ -81,6 +81,7 @@ const About = () => {
       title: "GraphQL",
       imgUrl:
         "https://portfolio-website-3242342356234.s3.us-east-2.amazonaws.com/2.0/About/GraphQL_Logo.svg.png",
+      maxWidth: "12rem",
     },
     {
       title: "JavaScript",
